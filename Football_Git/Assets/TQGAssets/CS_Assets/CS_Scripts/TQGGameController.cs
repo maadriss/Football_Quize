@@ -470,14 +470,19 @@ namespace TriviaQuizGame
 		void Update()
 		{
 			// Move the progress object so that the current question is centered in the screen
-			if (progressObject && progressTabObject) progressObject.anchoredPosition = new Vector2(Mathf.Lerp(progressObject.anchoredPosition.x, progressTabSize * (0.5f - questionLimitCount), Time.deltaTime * 10), progressObject.anchoredPosition.y);
+			if (progressObject && progressTabObject)
+			{
+				progressObject.anchoredPosition = new Vector2(Mathf.Lerp(progressObject.anchoredPosition.x, progressTabSize *
+				  (0.5f - questionLimitCount), Time.deltaTime * 10), progressObject.anchoredPosition.y);
+			}
 
 			if (currentPlayer < players.Length)
 			{
 				// Move the players object so that the current player is centered in the screen
 				if (players[currentPlayer].nameText && bonusObject.position.x != players[currentPlayer].nameText.transform.position.x)
 				{
-					playersObject.anchoredPosition = new Vector2(Mathf.Lerp(playersObject.anchoredPosition.x, currentPlayer * -200 - 100, Time.deltaTime * 10), playersObject.anchoredPosition.y);
+					playersObject.anchoredPosition = new Vector2(Mathf.Lerp(playersObject.anchoredPosition.x, 
+						currentPlayer * -200 - 100, Time.deltaTime * 10), playersObject.anchoredPosition.y);
 				}
 
 				// Make the score count up to its current value, for the current player
