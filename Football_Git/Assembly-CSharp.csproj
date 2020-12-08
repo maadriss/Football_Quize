@@ -68,6 +68,7 @@
     <Compile Include="Assets\MyScripts\LevelLoader.cs" />
     <Compile Include="Assets\MyScripts\NextLevel.cs" />
     <Compile Include="Assets\MyScripts\PauseGame.cs" />
+    <Compile Include="Assets\MyScripts\TimeRemaining.cs" />
     <Compile Include="Assets\TQGAssets\CS_Assets\CS_Scripts\TQGAnimateColors.cs" />
     <Compile Include="Assets\TQGAssets\CS_Assets\CS_Scripts\TQGAnimateUI.cs" />
     <Compile Include="Assets\TQGAssets\CS_Assets\CS_Scripts\TQGCategoryGrid.cs" />

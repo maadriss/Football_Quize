@@ -1,14 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class NextLevel : MonoBehaviour
 {
-    public Canvas nextCanvas;
-    public void LoadNextCanvas()
+    public GameObject completeRegister;
+    public InputField codeInput;
+    public void LoadNextPanel()
     {
-        nextCanvas.GetComponent<Canvas>().enabled = true;
-    }
+        if (codeInput.text == "12345")
+        {
+            completeRegister.SetActive(true);
+        }
+        else { Debug.Log("Code is wrong"); }
+    }    
 }
