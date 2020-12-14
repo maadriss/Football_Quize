@@ -234,6 +234,22 @@ namespace TriviaQuizGame
 		internal bool keyboardControls = false;
 
 
+
+		// My new methods.
+		// Powerups!				
+		public void AddTime()
+        {
+			globalTime += 30;
+			timeLeft = globalTime;
+		}
+
+		// Each powerup should use one time in entire game. For this reason we use this method to
+		// make each button stop working.		
+		public void StopButtons(Button button)
+        {
+			button.enabled = false;
+        }
+
 		/// <summary>
 		/// Start is only called once in the lifetime of the behaviour.
 		/// The difference between Awake and Start is that Start is only called if the script instance is enabled.
@@ -1275,7 +1291,8 @@ namespace TriviaQuizGame
 						{
 							timerBar.fillAmount = timeLeft / globalTime;
 						}
-						else if (timerRunning == true) // If the timer is running, display the fill amount left for the question time. 
+						// If the timer is running, display the fill amount left for the question time.
+						else if (timerRunning == true)
 						{
 							timerBar.fillAmount = timeLeft / questions[currentQuestion].time;
 						}
@@ -1303,15 +1320,19 @@ namespace TriviaQuizGame
 					// If we have a global time, display the correct frame from the time animation
 					if (globalTime > 0)
 					{
-						timerAnimated["TimerAnimatedProgress"].time = (1 - (timeLeft / globalTime)) * timerAnimated["TimerAnimatedProgress"].clip.length;
+						timerAnimated["TimerAnimatedProgress"].time = (1 - (timeLeft / globalTime)) 
+							* timerAnimated["TimerAnimatedProgress"].clip.length;
 					}
 					else if (timerRunning == true) // If the timer is running, display the correct frame from the time animation
 					{
-						timerAnimated["TimerAnimatedProgress"].time = (1 - (timeLeft / questions[currentQuestion].time)) * timerAnimated["TimerAnimatedProgress"].clip.length;
+						timerAnimated["TimerAnimatedProgress"].time = 
+							(1 - (timeLeft / questions[currentQuestion].time)) * 
+							timerAnimated["TimerAnimatedProgress"].clip.length;
 					}
 					else // Otherwise rewind the time animation to the start
 					{
-						timerAnimated["TimerAnimatedProgress"].time = Mathf.Lerp(timerAnimated["TimerAnimatedProgress"].time, 1, Time.deltaTime * 10);
+						timerAnimated["TimerAnimatedProgress"].time = 
+							Mathf.Lerp(timerAnimated["TimerAnimatedProgress"].time, 1, Time.deltaTime * 10);
 					}
 
 					// Start animating
