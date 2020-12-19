@@ -238,17 +238,42 @@ namespace TriviaQuizGame
 		// My new methods.
 		// Powerups!				
 		public void AddTime()
-        {
+		{
 			globalTime += 30;
 			timeLeft = globalTime;
+		}
+		public void DeleteTwoWrongAnswers()
+		{
+			// Get two wrong answers and delete them.
+			Answer[] wrongAnswer = new Answer[2];
+			Text[] texts = new Text[FindObjectsOfType<Text>().Length];
+			texts = FindObjectsOfType<Text>();
+			byte j = 0;
+			// Choose two wrong answers.
+			for (int i = 0; i < questions[currentQuestion].answers.Length; i++)
+			{
+				if (questions[currentQuestion].answers[i].isCorrect == false && j < 2)
+				{
+					wrongAnswer[j] = questions[currentQuestion].answers[i];
+					j++;
+				}
+			}
+			j = 0;
+			// Get texts game objects that equal to wrongAnswers and delete them.            
+			for (int i = 0; i < texts.Length; i++)
+			{
+				if (texts[i].text == wrongAnswer[j].answer ||
+					texts[i].text == wrongAnswer[j + 1].answer && j < 2)
+				{ texts[i].transform.parent.gameObject.SetActive(false); }
+			}
 		}
 
 		// Each powerup should use one time in entire game. For this reason we use this method to
 		// make each button stop working.		
 		public void StopButtons(Button button)
-        {
+		{
 			button.enabled = false;
-        }
+		}
 
 		/// <summary>
 		/// Start is only called once in the lifetime of the behaviour.
@@ -303,7 +328,8 @@ namespace TriviaQuizGame
 				playersObject = GameObject.Find("PlayersObject").GetComponent<RectTransform>();
 			}
 
-			// Record the default number of questions per group, so that when we change the number of players we can update this value correctly
+			// Record the default number of questions per group, 
+			// so that when we change the number of players we can update this value correctly
 			defaultQuestionsPerGroup = questionsPerGroup;
 
 			// Update the current list of players based on numberOfPlayers
@@ -497,7 +523,7 @@ namespace TriviaQuizGame
 				// Move the players object so that the current player is centered in the screen
 				if (players[currentPlayer].nameText && bonusObject.position.x != players[currentPlayer].nameText.transform.position.x)
 				{
-					playersObject.anchoredPosition = new Vector2(Mathf.Lerp(playersObject.anchoredPosition.x, 
+					playersObject.anchoredPosition = new Vector2(Mathf.Lerp(playersObject.anchoredPosition.x,
 						currentPlayer * -200 - 100, Time.deltaTime * 10), playersObject.anchoredPosition.y);
 				}
 
@@ -866,11 +892,17 @@ namespace TriviaQuizGame
 							// Enable the button so we can press it
 							answerObjects[index].GetComponent<Button>().interactable = true;
 
-							// Select each button as it becomes enabled. This action solves a bug that appeared in Unity 5.5 where buttons stay highlighted from the previous question.
+							// Select each button as it becomes enabled. 
+							// This action solves a bug that appeared in Unity 5.5 where 
+							// buttons stay highlighted from the previous question.
 							answerObjects[index].GetComponent<Button>().Select();
 
 							// Display the text of the answer
-							if (index < questions[currentQuestion].answers.Length) answerObjects[index].Find("Text").GetComponent<Text>().text = questions[currentQuestion].answers[index].answer;
+							if (index < questions[currentQuestion].answers.Length)
+							{
+								answerObjects[index].Find("Text").GetComponent<Text>().text =
+								questions[currentQuestion].answers[index].answer;
+							}
 							else answerObjects[index].gameObject.SetActive(false);
 
 							// If the answer has a sound, activate the sound button so we can play it
@@ -1320,18 +1352,18 @@ namespace TriviaQuizGame
 					// If we have a global time, display the correct frame from the time animation
 					if (globalTime > 0)
 					{
-						timerAnimated["TimerAnimatedProgress"].time = (1 - (timeLeft / globalTime)) 
+						timerAnimated["TimerAnimatedProgress"].time = (1 - (timeLeft / globalTime))
 							* timerAnimated["TimerAnimatedProgress"].clip.length;
 					}
 					else if (timerRunning == true) // If the timer is running, display the correct frame from the time animation
 					{
-						timerAnimated["TimerAnimatedProgress"].time = 
-							(1 - (timeLeft / questions[currentQuestion].time)) * 
+						timerAnimated["TimerAnimatedProgress"].time =
+							(1 - (timeLeft / questions[currentQuestion].time)) *
 							timerAnimated["TimerAnimatedProgress"].clip.length;
 					}
 					else // Otherwise rewind the time animation to the start
 					{
-						timerAnimated["TimerAnimatedProgress"].time = 
+						timerAnimated["TimerAnimatedProgress"].time =
 							Mathf.Lerp(timerAnimated["TimerAnimatedProgress"].time, 1, Time.deltaTime * 10);
 					}
 
@@ -1422,7 +1454,7 @@ namespace TriviaQuizGame
 				//Write the score text, if it exists
 				if (gameOverCanvas.Find("ScoreTexts/TextScore"))
 				{
-					gameOverCanvas.Find("ScoreTexts/TextScore").GetComponent<Text>().text = 
+					gameOverCanvas.Find("ScoreTexts/TextScore").GetComponent<Text>().text =
 						"SCORE " + players[currentPlayer].score.ToString();
 				}
 
