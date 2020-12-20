@@ -9,7 +9,6 @@ ScriptsOnlyBuild:
     - TriviaQuizGame.TQGGameController
     - TriviaQuizGame.TQGGlobalMusic
     - TriviaQuizGame.TQGLoadLevel
-    - TriviaQuizGame.TQGSelectButton
     - TriviaQuizGame.TQGShareByMail
     - TriviaQuizGame.Types.Category
     - TriviaQuizGame.Types.TQGToggleSound
@@ -122,8 +121,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13516}
     - Class: 114
-      Script: {instanceID: 13532}
-    - Class: 114
       Script: {instanceID: 13828}
     - Class: 114
       Script: {instanceID: 13836}
@@ -206,7 +203,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
-    Assets/MyScenes/New Scene.unity:
+    Assets/MyScenes/MainMenu.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -907,6 +904,6 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/MyScenes/LoadingScene.unity
   - Assets/MyScenes/Register.unity
-  - Assets/MyScenes/New Scene.unity
+  - Assets/MyScenes/MainMenu.unity
   - Assets/MyScenes/Game.unity
-  playerPath: C:/Users/Mahdi/Documents/GitHub/Football_Quize/Football_Git/Build/FootballQuiz.apk
+  playerPath: C:/Users/Mahdi/Documents/GitHub/Football_Quiz/Football_Git/Build/FootballQuiz.apk

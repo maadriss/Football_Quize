@@ -1,0 +1,4 @@
+#Mon Dec 21 00:07:27 IRST 2020
+base.0=C\:\\Users\\Mahdi\\Documents\\GitHub\\Football_Quiz\\Football_Git\\Temp\\gradleOut\\launcher\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex
