@@ -239,8 +239,9 @@ namespace TriviaQuizGame
 		// Powerups!				
 		public void AddTime()
 		{
-			globalTime += 30;
-			timeLeft = globalTime;
+			// Set bonus time to remaining time.			
+			timeLeft += 30;
+			globalTime = timeLeft;
 		}
 		public void DeleteTwoWrongAnswers()
 		{
